@@ -1,7 +1,7 @@
 import './App.css';
 import logo from './logo.svg'
 import Coin from './Components/Coin/Coin.js';
-
+import AccountBalance from './Components/AccountBalance/AccountBalance.js'
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           Coin Exchange
         </h1>
       </header>
+      <AccountBalance amount={100000} />
       <table className="coin-table">
         <thead>
           <tr>
