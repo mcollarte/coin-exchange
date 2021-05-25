@@ -17,17 +17,7 @@ export default class Coin extends Component {
         //any class function that will be used to update the componente needs to be bound to the context of the component
         this.handleClick = this.handleClick.bind(this);
     }
-    // componentDidMount(){
-    //     const callback = () =>{
-    //         const randomPercentage  = 0.995 + Math.random()*0.01;
-    //         this.setState((oldState)=>{
-    //             return {
-    //                 price: oldState.price * randomPercentage
-    //             };
-    //         });
-    //     }
-    //     setInterval(callback, 1000);
-    // }
+
     handleClick(event){
         //Prevent the page from reloading because this will remount component and reset initial values
         event.preventDefault();

@@ -1,34 +1,35 @@
-import './App.css';
-import logo from './logo.svg'
-import Coin from './Components/Coin/Coin.js';
-import AccountBalance from './Components/AccountBalance/AccountBalance.js'
+import React from 'react';
+import CoinList from './Components/CoinList.js';
+import AccountBalance from './Components/AccountBalance.js'
+import ExchangeHeader from './Components/ExchangeHeader';
+import styled from 'styled-components';
 
+const Div = styled.div`
+text-align: center;
+background-color: #26067e;
+color: #cccccc;
+`;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="React Logo" className="App-logo" />
-        <h1 className ="App-header">
-          Coin Exchange
-        </h1>
-      </header>
-      <AccountBalance amount={100000} />
-      <table className="coin-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Ticker</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody >
-              <Coin name="Bitcoin" ticker="BTC" price={100000} /> 
-              <Coin name="Ethereum" ticker="Eth" price={200} /> 
-        </tbody>
-      </table>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      balance: 100000,
+      coinData: [
+        {name: "Bitcoin", ticker:"BTC", price: 9999.99},
+        {name: "Ethereum", ticker:"ETH", price: 399.99}
+      ]
+    }
+  }
+  render(){
+    return (
+      <Div>
+        <ExchangeHeader />
+        <AccountBalance amount={this.state.balance} />
+        <CoinList coinData={this.state.coinData} />
+      </Div>
+    );
+  }
 }
 
 export default App;
