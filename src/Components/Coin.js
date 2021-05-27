@@ -9,31 +9,25 @@ const Td = styled.td`
 `;
 
 export default class Coin extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            price: this.props.price
-        };
-        //any class function that will be used to update the componente needs to be bound to the context of the component
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event){
+    handleClick= (event)=>{
         //Prevent the page from reloading because this will remount component and reset initial values
         event.preventDefault();
-        const randomPercentage  = 0.995 + Math.random()*0.01;
-        this.setState((oldState)=>{
-             return {
-                price: oldState.price * randomPercentage
-             };
-        });
+        this.props.handleRefresh(this.props.ticker);
     }
     render() {
+        let balanceColumn = <></>;
+        
+        if(this.props.showBalance){
+            balanceColumn = <Td>{this.props.balance}</Td>;
+            console.log(this.props.balance)
+        }
+            
         return (
             <tr>
                 <Td>{this.props.name}</Td>
                 <Td>{this.props.ticker}</Td>
-                <Td>${this.state.price}</Td>
+                {balanceColumn}
+                <Td>${this.props.price}</Td>
                 <Td>
                     <form action="#" method="POST">
                         <button onClick ={this.handleClick}>Refresh</button>
